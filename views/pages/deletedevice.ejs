@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<%# Insert the head section code, which is repeated on all pages %>
+<%- include('../inc/head') %>
+
+<body>
+    <%# Insert the header section code, which is repeated on all pages %>
+    <%- include('../inc/header') -%>
+    <main>
+        <div class="container">
+            <h1>
+                Delete status
+            </h1>
+            <%# if delId contains something, then display a success message %>
+            <% if (delId) { %>
+            <div class="success">
+                <h4>Success</h4>
+                <p>Device with id <span>
+                        <%= delId %></span> was successfully <span> deleted</span></p>
+            </div>
+            <% } %>
+            <div class="table">
+                <div class="thead">
+                    <div class="tr">
+                        <div class="th">ID</div>
+                        <div class="th">Name</div>
+                        <div class="th">More</div>
+                    </div>
+                </div>
+                <div class="tbody">
+                    <%# process the devices object and display all the information through the loop %>
+                    <% devices.forEach(function(device) { %>
+                    <div class="tr">
+                        <%# id %>
+                        <div class="td">
+                            <%= device.id %>
+                        </div>
+                        <%# имя %>
+                        <div class="td">
+                            <%= device.name %>
+                        </div>
+                        <%# button with additional id for js processing %>
+                        <div class="td"><a href="#" class="btn del del_btn_js" data-delid="<%= device.id %>">Delete</a></div>
+                    </div>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Modal window with deletion confirmation -->
+    <div class="popup" id="popupId">
+        <div class="popup_content">
+            <div class="icon_wrap">
+                <ion-icon name="alert-outline"></ion-icon>
+            </div>
+            <h2>
+                Are you sure you want to delete the device?
+            </h2>
+            <!-- delete device form -->
+            <form action="/deletedevice" method="post" name="DelDevicePageForm">
+                <!-- hidden input to pass value -->
+                <input type="number" id="hidInputDelForm" name="hidInputDelForm" hidden required>
+                <button class="btn del" id="btnDelForm">Yes, I want</button>
+                <a href="#" class="btn" id="btnDelFormClose">No, I don't want</a>
+            </form>
+        </div>
+    </div>
+    <%# Insert footer section code that repeats on all pages %>
+    <%- include('../inc/footer') -%>
+</body>
+
+</html>

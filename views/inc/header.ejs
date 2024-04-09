@@ -1,0 +1,42 @@
+<!-- Header Section - Start -->
+<header class="header">
+
+    <div class="container">
+        <div class="wrap_header">
+            <!-- logo -->
+            <div class="logo">
+                <span class="big">My</span>
+                <span class="wrap_line">smart <span>home</span></span>
+            </div>
+            <!-- logo - end -->
+
+            <!-- menu -->
+            <ion-icon name="menu-outline" class="menu_icon" id="menu_icon"></ion-icon>
+            <ion-icon name="close-outline" class="menu_icon_close" id="menu_icon_close"></ion-icon>
+            <nav id="menu_id">
+                <ul>
+                    <%# Using the isPage variable, which is set in the route for the page, we check its value and make
+                        the desired link in the menu active by checking the condition %>
+                        <li <% if (isPage=='home' ) { %> class="active" <% } %> ><a href="/">Home</a></li>
+
+                        <li <% if (isPage=='about' ) { %> class="active" <% } %> ><a href="/about">About</a></li>
+
+                        <li <% if (isPage=='adddevice' ) { %> class="active" <% } %> ><a href="/adddevice">Add
+                                    Device</a>
+                        </li>
+
+                        <li <% if (isPage=='deletedevice' ) { %> class="active" <% } %> ><a href="/deletedevice">Delete
+                                    Device</a></li>
+
+                        <li <% if (isPage=='devicestatus' ) { %> class="active" <% } %> ><a href="/devicestatus">Device
+                                    Status</a> </li>
+
+                        <li <% if (isPage=='controldevice' ) { %> class="active" <% } %> ><a href="/controldevice">Control
+                                    Device</a> </li>
+                </ul>
+            </nav>
+            <!-- menu - end -->
+        </div>
+    </div>
+</header>
+<!-- Header Section - End -->

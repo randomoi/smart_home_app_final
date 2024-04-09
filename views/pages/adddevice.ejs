@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<%# Insert the head section code, which is repeated on all pages %>
+<%- include('../inc/head') %>
+
+<body class="adddevice_page">
+    <%# Insert the header section code, which is repeated on all pages %>
+    <%- include('../inc/header') -%>
+    <main>
+        <div class="container">
+            <%# if idData contains something, then display a success message %>
+            <% if (idData) { %>
+            <div class="success">
+                <h4>Success</h4>
+                <%# if idData contains something, then display the data itself %>
+                <% if (idData) { %>
+                <p> <span>ID:</span>
+                    <%= idData %>
+                </p>
+                <% } %>
+                <%# if nameData contains something, then display the data itself %>
+                <% if (nameData) { %>
+                <p> <span>Name:</span>
+                    <%= nameData %>
+                </p>
+                <% } %>
+                <%# if isOnData contains something, then display the data itself %>
+                <% if (isOnData) { %>
+                <p> <span>On/off:</span>
+                    <%# since this parameter is stored in the database as 0 and 1, then additionally check for this and display just the text %>
+                    <% if (isOnData == 0) { %>
+                    Off
+                    <% } %>
+                    <% if (isOnData == 1) { %>
+                    On
+                    <% } %>
+                </p>
+                <% } %>
+                <%# if temperatureData contains something, then display the data itself %>
+                <% if (temperatureData) { %>
+                <p> <span>Temperature:</span>
+                    <%= temperatureData %>
+                </p>
+                <% } %>
+                <%# if isOpenData contains something, then display the data itself %>
+                <% if (isOpenData) { %>
+                <p> <span>Is open:</span>
+                    <%# since this parameter is stored in the database as 0 and 1, then additionally check for this and display just the text %>
+                    <% if (isOpenData == 0) { %>
+                    Close
+                    <% } %>
+                    <% if (isOpenData == 1) { %>
+                    Open
+                    <% } %>
+                </p>
+                <% } %>
+                <%# if brightnessData contains something, then display the data itself %>
+                <% if (brightnessData) { %>
+                <p> <span>Brightness:</span>
+                    <%= brightnessData %>
+                </p>
+                <% } %>
+                <%# if volumeData contains something, then display the data itself %>
+                <% if (volumeData) { %>
+                <p> <span>Volume:</span>
+                    <%= volumeData %>
+                </p>
+                <% } %>
+                <%# if capacityData contains something, then display the data itself %>
+                <% if (capacityData) { %>
+                <p> <span>Capacity:</span>
+                    <%= capacityData %>
+                </p>
+                <% } %>
+            </div>
+            <% } %>
+            <h1>
+                Add device
+            </h1>
+            <div class="content_wrap">
+                <!-- a form that will send information to the server using the post method -->
+                <form action="/adddevice" method="POST" name="addDevicePageForm">
+                    <div class="step">
+                        Step 1: Choose a device
+                    </div>
+                    <!-- list all devices -->
+                    <div class="input_wrap input_wrap_first">
+                        <label class="rdiobox">
+                            <input id="cooling_id_val" name="name_device" type="radio" value="Cooling">
+                            <span>Cooling</span>
+                        </label>
+                        <label class="rdiobox">
+                            <input id="heating_id_val" name="name_device" type="radio" value="Heating">
+                            <span>Heating</span>
+                        </label>
+                        <label class="rdiobox">
+                            <input id="curtains_id_val" name="name_device" type="radio" value="Curtains">
+                            <span>Curtains</span>
+                        </label>
+                        <label class="rdiobox">
+                            <input id="blinds_id_val" name="name_device" type="radio" value="Blinds">
+                            <span>Blinds</span>
+                        </label>
+                        <label class="rdiobox">
+                            <input id="security_id_val" name="name_device" type="radio" value="Security">
+                            <span>Security</span>
+                        </label>
+                        <label class="rdiobox">
+                            <input id="tv_id_val" name="name_device" type="radio" value="TV">
+                            <span>TV</span>
+                        </label>
+                        <label class="rdiobox">
+                            <input id="radio_id_val" name="name_device" type="radio" value="Radio">
+                            <span>Radio</span>
+                        </label>
+                        <label class="rdiobox">
+                            <input id="music_id_val" name="name_device" type="radio" value="Music">
+                            <span>Music</span>
+                        </label>
+                        <label class="rdiobox">
+                            <input id="fridge_id_val" name="name_device" type="radio" value="Fridge">
+                            <span>Fridge</span>
+                        </label>
+                        <label class="rdiobox">
+                            <input id="door lock_id_val" name="name_device" type="radio" value="Door lock">
+                            <span>Door lock</span>
+                        </label>
+                        <label class="rdiobox">
+                            <input id="oven_id_val" name="name_device" type="radio" value="Oven">
+                            <span>Oven</span>
+                        </label>
+                        <label class="rdiobox">
+                            <input id="microwave_id_val" name="name_device" type="radio" value="Microwave">
+                            <span>Microwave</span>
+                        </label>
+                        <label class="rdiobox">
+                            <input id="coffee maker_id_val" name="name_device" type="radio" value="Coffee maker">
+                            <span>Coffee maker</span>
+                        </label>
+                        <label class="rdiobox">
+                            <input id="tea maker_id_val" name="name_device" type="radio" value="Tea maker">
+                            <span>Tea maker</span>
+                        </label>
+                        <label class="rdiobox">
+                            <input id="bedroom lighting_id_val" name="name_device" type="radio" value="Bedroom lighting">
+                            <span>Bedroom lighting</span>
+                        </label>
+                        <label class="rdiobox">
+                            <input id="living room lighting_id_val" name="name_device" type="radio" value="Living room lighting">
+                            <span>Living room lighting</span>
+                        </label>
+                        <label class="rdiobox">
+                            <input id="bathroom lighting_id_val" name="name_device" type="radio" value="Bathroom lighting">
+                            <span>Bathroom lighting</span>
+                        </label>
+                        <label class="rdiobox">
+                            <input id="yard lighting_id_val" name="name_device" type="radio" value="Yard lighting">
+                            <span>Yard lighting</span>
+                        </label>
+                        <label class="rdiobox">
+                            <input id="baby room lighting_id_val" name="name_device" type="radio" value="Baby room lighting">
+                            <span>Baby room lighting</span>
+                        </label>
+                        <label class="rdiobox">
+                            <input id="office lighting_id_val" name="name_device" type="radio" value="Office lighting">
+                            <span>Office lighting</span>
+                        </label>
+                    </div>
+                    <!-- list all devices - end -->
+                    <div class="step_2 d-none">
+                        <div class="step">
+                            Step 2: Enter parameters
+                        </div>
+                        <!-- list of all possible parameters -->
+                        <!-- parameter: whether the device is turned on -->
+                        <div class="param is_on">
+                            <p>Is device on?</p>
+                            <label class="rdiobox">
+                                <input name="is_on" type="radio" value="0" data-name="device on/off">
+                                <span>No</span>
+                            </label>
+                            <label class="rdiobox">
+                                <input name="is_on" type="radio" value="1" data-name="device on/off">
+                                <span>Yes</span>
+                            </label>
+                        </div>
+                        <!-- parameter: whether the device is turned on - end -->
+                        <!-- parameter: is the device open -->
+                        <div class="param is_open ">
+                            <p>Is open?</p>
+                            <label class="rdiobox">
+                                <input name="is_open" type="radio" value="0" data-name="device open">
+                                <span>No</span>
+                            </label>
+                            <label class="rdiobox">
+                                <input name="is_open" type="radio" value="1" data-name="device open">
+                                <span>Yes</span>
+                            </label>
+                        </div>
+                        <!-- parameter: is the device open - end -->
+                        <!-- parameter: temperature -->
+                        <div class="param temperature">
+                            <p>What is the current temperature? (°C)</p>
+                            <input id="temperature_input_id" class="form-control" type="number" name="temperature_input" placeholder="Temperature" min="-50" max="100" data-name="temperature">
+                        </div>
+                        <!-- parameter: temperature - end -->
+                        <!-- parameter: brightness -->
+                        <div class="param brightness">
+                            <p>What is the current brightness? (cd/m2)</p>
+                            <input id="brightness_input_id" class="form-control" type="number" name="brightness_input" placeholder="Brightness" min="0" max="1000" data-name="brightness">
+                        </div>
+                        <!-- parameter: brightness - end -->
+                        <!-- parameter: volume -->
+                        <div class="param volume">
+                            <p>What is the volume now? </p>
+                            <input id="volume_input_id" class="form-control" type="number" name="volume_input" placeholder="Volume" min="0" max="100" data-name="volume">
+                        </div>
+                        <!-- parameter: volume - end -->
+                        <!-- parameter: capacity -->
+                        <div class="param capacity">
+                            <p>What is the capacity now? </p>
+                            <input id="capacity_input_id" class="form-control" type="number" name="capacity_input" placeholder="Capacity" min="0" max="300" data-name="capacity">
+                        </div>
+                        <!-- parameter: capacity - end -->
+                        <button class="btn" id="submit_add_page">Submit</button>
+                        <div class="error_message" id="error_message">
+                        </div>
+                    </div>
+                </form>
+                <!-- a form that will send information to the server using the post method - end -->
+            </div>
+        </div>
+    </main>
+    <%# Insert footer section code that repeats on all pages %>
+    <%- include('../inc/footer') -%>
+</body>
+
+</html>

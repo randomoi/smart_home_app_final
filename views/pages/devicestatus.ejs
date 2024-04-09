@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<%# Insert the head section code, which is repeated on all pages %>
+<%- include('../inc/head') %>
+
+<body>
+    <%# Insert the header section code, which is repeated on all pages %>
+    <%- include('../inc/header') -%>
+    <main>
+        <div class="container">
+            <h1>
+                Device status
+            </h1>
+            <div class="table">
+                <div class="thead">
+                    <div class="tr">
+                        <div class="th">ID</div>
+                        <div class="th">Name</div>
+                        <div class="th">More</div>
+                    </div>
+                </div>
+                <div class="tbody">
+                    <%# process the devices object and display all the information through the loop %>
+                    <% devices.forEach(function(device) { %>
+                    <div class="tr">
+                        <%# id %>
+                        <div class="td">
+                            <%= device.id %>
+                        </div>
+                        <%# имя %>
+                        <div class="td">
+                            <%= device.name %>
+                        </div>
+                        <%# button with additional id for js processing %>
+                        <div class="td"><a href="#" class="btn more_btn" data-id="<%= device.id %>">More info</a></div>
+                        <%# additional information at the click of a button %>
+                        <div class="more" id="more-<%= device.id %>">
+                            <h3>More info</h3>
+                            <div class="more_info">
+                                <%# if device.id contains something, then display the data itself %>
+                                <% if (device.id) { %>
+                                <p> <span>ID:</span>
+                                    <%= device.id %>
+                                </p>
+                                <% } %>
+                                <%# if device.name contains something, then display the data itself %>
+                                <% if (device.name) { %>
+                                <p> <span>Name:</span>
+                                    <%= device.name %>
+                                </p>
+                                <% } %>
+                                <%# if device.isOn contains something, then we output the data itself %>
+                                <% if (device.isOn) { %>
+                                <p> <span>On/off:</span>
+                                    <%# since this parameter is stored in the database as 0 and 1, then we additionally check for this and display just the text %>
+                                    <% if (device.isOn == 0) { %>
+                                    Off
+                                    <% } %>
+                                    <% if (device.isOn == 1) { %>
+                                    On
+                                    <% } %>
+                                </p>
+                                <% } %>
+                                <%# if device.temperature contains something, then display the data itself %>
+                                <% if (device.temperature) { %>
+                                <p> <span>Temperature:</span>
+                                    <%= device.temperature %>
+                                </p>
+                                <% } %>
+                                <%# if device.isOpen contains something, then display the data itself %>
+                                <% if (device.isOpen) { %>
+                                <p> <span>Is open:</span>
+                                    <%# since this parameter is stored in the database as 0 and 1, then we additionally check for this and display just the text %>
+                                    <% if (device.isOpen == 0) { %>
+                                    Close
+                                    <% } %>
+                                    <% if (device.isOpen == 1) { %>
+                                    Open
+                                    <% } %>
+                                </p>
+                                <% } %>
+                                <%# if device.brightness contains something, then display the data itself %>
+                                <% if (device.brightness) { %>
+                                <p> <span>Brightness:</span>
+                                    <%= device.brightness %>
+                                </p>
+                                <% } %>
+                                <%# if device.volume contains something, then display the data itself %>
+                                <% if (device.volume) { %>
+                                <p> <span>Volume:</span>
+                                    <%= device.volume %>
+                                </p>
+                                <% } %>
+                                <%# if device.capacity contains something, then display the data itself %>
+                                <% if (device.capacity) { %>
+                                <p> <span>Capacity:</span>
+                                    <%= device.capacity %>
+                                </p>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                    <% }); %>
+                </div>
+            </div>
+            <ul>
+            </ul>
+        </div>
+    </main>
+    <%# Insert footer section code that repeats on all pages %>
+    <%- include('../inc/footer') -%>
+</body>
+
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<%# Insert the head section code, which is repeated on all pages  %>
+<%- include('../inc/head') %>
+
+<body>
+    <%# Insert the header section code, which is repeated on all pages  %>
+    <%- include('../inc/header') -%>
+    <main>
+        <div class="container">
+            <h1>
+                Control device 
+            </h1>
+            <%# If there is data in the dataUpEditSucc variable, then display a message about the successful update of the device parameters  %>
+            <% if (dataUpEditSucc) { %>
+                <div class="success">
+                    <h4>Success</h4>
+                    <p>Device parameters with <span>id:<%= dataUpEditSucc %> </span>updated successfully</p>
+                </div>  
+            <% } %>
+
+
+            <%# If there is data in the dataEdit variable, then display the data for editing  %>
+            <% if (dataEdit) { %>
+            <div class="update_wrap">
+                <h4>You are updating the device:
+                    <%= dataEdit.name %> (id:
+                    <%= dataEdit.id %>)</h4>
+                <form action="/controldevice" method="POST" name="updateDevicePageForm">
+                    <%# if dataEdit.isOn contains something, then display the data itself %>
+                    <% if (dataEdit.isOn) { %>
+                    <div class="param is_on">
+                        <p>Is device on?</p>
+                        <label class="rdiobox">
+                            <%# since this parameter is stored in the database as 0 and 1, then here we additionally check for this and display the selected or not selected radio                                     <input name="is_on" type="radio" value="1" data-name="device on/off" >
+                                %>
+                            <% if (dataEdit.isOn == 0) { %>
+                            <input name="is_on" type="radio" value="0" data-name="device on/off" checked>
+                            <% } %>
+                            <% if (dataEdit.isOn == 1) { %>
+                            <input name="is_on" type="radio" value="1" data-name="device on/off">
+                            <% } %>
+                            <span>No</span>
+                        </label>
+                        <label class="rdiobox">
+                            <% if (dataEdit.isOn == 0) { %>
+                            <input name="is_on" type="radio" value="1" data-name="device on/off">
+                            <% } %>
+                            <% if (dataEdit.isOn == 1) { %>
+                            <input name="is_on" type="radio" value="1" data-name="device on/off" checked>
+                            <% } %>
+                            <span>Yes</span>
+                        </label>
+                    </div>
+                    <% } %>
+                    <%# if dataEdit.temperature contains something, then display the data itself and in value we write the data from the database %>
+                    <% if (dataEdit.temperature) { %>
+                    <div class="param temperature">
+                        <p>What is the current temperature? (°C)</p>
+                        <input id="temperature_input_id" class="form-control" type="number" name="temperature_input" value="<%= dataEdit.temperature %>" placeholder="Temperature" min="-50" max="100" data-name="temperature">
+                    </div>
+                    <% } %>
+                    <%# if dataEdit.isOpen contains something, then display the data itself %>
+                    <% if (dataEdit.isOpen) { %>
+                    <div class="param is_open ">
+                        <p>Is open?</p>
+                        <label class="rdiobox">
+                            <%# since this parameter is stored in the database as 0 and 1, then we additionally check for this and display just the text %>
+                            <% if (dataEdit.isOpen == 0) { %>
+                            <input name="is_open" type="radio" value="0" data-name="device open" checked>
+                            <% } %>
+                            <% if (dataEdit.isOpen == 1) { %>
+                            <input name="is_open" type="radio" value="0" data-name="device open">
+                            <% } %>
+                            <span>No</span>
+                        </label>
+                        <label class="rdiobox">
+                            <% if (dataEdit.isOpen == 0) { %>
+                            <input name="is_open" type="radio" value="1" data-name="device open">
+                            <% } %>
+                            <% if (dataEdit.isOpen == 1) { %>
+                            <input name="is_open" type="radio" value="1" data-name="device open" checked>
+                            <% } %>
+                            <span>Yes</span>
+                        </label>
+                    </div>
+                    <% } %>
+                    <%# if dataEdit.brightness contains something, then display the data itself, then display the data itself and in value we write the data from the database %>
+                    <% if (dataEdit.brightness) { %>
+                    <div class="param brightness">
+                        <p>What is the current brightness? (cd/m2)</p>
+                        <input id="brightness_input_id" value="<%= dataEdit.brightness %>" class="form-control" type="number" name="brightness_input" placeholder="Brightness" min="0" max="1000" data-name="brightness">
+                    </div>
+                    <% } %>
+                    <%# if dataEdit.volume contains something, then display the data itself, then display the data itself and in value we write the data from the database %>
+                    <% if (dataEdit.volume) { %>
+                    <div class="param volume">
+                        <p>What is the volume now? </p>
+                        <input id="volume_input_id" value="<%= dataEdit.volume %>" class="form-control" type="number" name="volume_input" placeholder="Volume" min="0" max="100" data-name="volume">
+                    </div>
+                    <% } %>
+                    <%# if dataEdit.capacity contains something, then display the data itself, then display the data itself and in value we write the data from the database %>
+                    <% if (dataEdit.capacity) { %>
+                    <div class="param capacity">
+                        <p>What is the capacity now? </p>
+                        <input id="capacity_input_id" value="<%= dataEdit.capacity %>" class="form-control" type="number" name="capacity_input" placeholder="Capacity" min="0" max="300" data-name="capacity">
+                    </div>
+                    <% } %>
+
+                    <input id="id_device_up" name="id_device_up" type="number" value="<%= dataEdit.id %>" hidden>
+
+                    <button class="btn edit">Submit</button>
+                    <a href="/controldevice" class="btn light">Cancel, and go back</a>
+                </form>
+            </div>
+            <% } %>
+            <%# If there is data in the devices variable, then simply display a list of devices %>
+            <% if (devices) { %>
+            <div class="table">
+                <div class="thead">
+                    <div class="tr">
+                        <div class="th">ID</div>
+                        <div class="th">Name</div>
+                        <div class="th">More</div>
+                    </div>
+                </div>
+                <div class="tbody">
+                    <%# We process the devices object and display all the information through the loop %>
+                    <% devices.forEach(function(device) { %>
+                    <div class="tr">
+                        <%# id %>
+                        <div class="td">
+                            <%= device.id %>
+                        </div>
+                        <%# имя %>
+                        <div class="td">
+                            <%= device.name %>
+                        </div>
+                        <%# button with additional id for js processing %>
+                        <div class="td"><a href="/controldevice/edit/<%= device.id %>" class="btn edit" data-delid="">Edit</a></div>
+                    </div>
+                    <% }); %>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </main>
+    <%# Insert footer section code that repeats on all pages  %>
+    <%- include('../inc/footer') -%>
+</body>
+
+</html>

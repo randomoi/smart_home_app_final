@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<%# Insert the head section code, which is repeated on all pages %>
+<%- include('../inc/head') %>
+
+<body class="home_page">
+    <%# Insert the header section code, which is repeated on all pages %>
+    <%- include('../inc/header') -%>
+    <main>
+        <div class="container">
+            <div class="content_wrap">
+                <div class="">
+                    <span>Welcome</span>
+                    to the <b>MySmartHome</b> application where you can add, delete, manage and view
+                    status of your smart devices
+                </div>
+                <a href="/adddevice" class="btn">Add device</a>
+            </div>
+        </div>
+    </main>
+    <%# Insert footer section code that repeats on all pages %>
+    <%- include('../inc/footer') -%>
+</body>
+
+</html>
