@@ -1,9 +1,5 @@
 # PROJECT: MY SMART HOME WEB APPLICATION
 
-Student: https://github.com/randomoi
-***
-
-### ABOUT
 The MySmartHome web application functions as a dashboard to help you control devices in your smart home.
 The MySmartHome web application lets you control your devices by allowing you to turn on/off lights,
 open/close doors, increase/decrease volume, regulate temperature, and so on, all in one place. You can also add and delete devices, set device preferences or view current status of each device.
@@ -36,9 +32,6 @@ open/close doors, increase/decrease volume, regulate temperature, and so on, all
 
 **Home Page** 
 <img src="./public/img/home_page.png" alt="Home Page" style="border: 1px solid black;">
-
-**About Page** 
-<img src="./public/img/about_page.png" alt="About Page" style="border: 1px solid black;">
 
 **Add Device Page (Default View)** 
 <img src="./public/img/add_device_default.png" alt="Add Device Page - Default View" style="border: 1px solid black;">
@@ -112,3 +105,5 @@ img - design files
 10. views - displays files of the ejs template engine and includes following sub folders:
 	inc – contains repeated elements such as head, header and footer
 	page – contains templates of the pages with names, which correspond to the names of the router’s files
+
+*Author: https://github.com/randomoi*
